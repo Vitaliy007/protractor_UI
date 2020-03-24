@@ -13,8 +13,8 @@ describe('Roster page', function() {
         browser.get("file:///D:/Courses/protractor_UI-master/superhero/index.html");
     })
 
-    fit('should display all default roster elements', function(){
-        loginPage.emailField.sendKeys("text@mail.com");
+    it('should display all default roster elements', function(){
+    loginPage.emailField.sendKeys("text@mail.com");
     loginPage.passwordField.sendKeys("pass");
     loginPage.submitBtn.click();
         expect(rosterPage.rosterTitleTxt.isDisplayed()).toBe(true)
@@ -28,7 +28,15 @@ describe('Roster page', function() {
         expect(rosterPage.submitBtn.isDisplayed()).toBe(true)
     })
     
-    it('', function(){
+    it('should add a hero', function(){
+        loginPage.emailField.sendKeys("text@mail.com")
+        loginPage.passwordField.sendKeys("pass")
+        loginPage.submitBtn.click()
+        rosterPage.rosterFld.sendKeys('Ms Marvel')
+        rosterPage.submitBtn.click()
+        expect(element(by.css('#hero-list > li:nth-child(6)')).isDisplayed()).toBe(true);
+        expect(element(by.css('#hero-list > li:nth-child(6)')).getText()).toEqual('Ms Marvel');
+
 
     })
 
